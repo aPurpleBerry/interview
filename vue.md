@@ -1,5 +1,3 @@
-0617
-
 # MVVM理解
 
 `MVVM`是一种软件架构模式，`MVVM` 分为 `Model`、`View`、`ViewModel`：
@@ -9,6 +7,45 @@
 - `ViewModel`负责监听`Model`中数据的改变并且控制视图的更新，处理用户交互操作；
 
 `Model`和`View`并无直接关联，而是通过`ViewModel`来进行联系的，`Model`和`ViewModel`之间有着双向数据绑定的联系。因此当`Model`中的数据改变时会触发`View`层的刷新，`View`中由于用户交互操作而改变的数据也会在`Model`中同步。
+
+# Vue3新特性
+
+**1 .** `Vue2`使用的是`optionsAPI `，`Vue3`使用`composition API`，更好地组织代码，提高代码可维护性
+
+- Vue3 之前使用的是 optionsAPI(选项式API)
+- Vue3 使用的是 compositionAPI（组合式API）
+
+**2 .** `Vue3`对`TypeScript`的支持更加友好
+
+- **类型推导 :** 就是在没有明确指出变量的类型时，**`TypeScript`** 编译器会自动推测。
+
+<font color="red">**Vue3 新特性**</font>
+
+1 . `Vue3`使用`Proxy`代理实现了新的响应式系统，比`Vue2`有着更好的性能和更准确的数据变化追踪能力。
+
+**2 . 虚拟 `DOM` - 新算法 (更快 更小)**
+
+**3 .** `Vue2`使用的是`optionsAPI `，`Vue3`使用`composition API`，更好地组织代码，提高代码可维护性
+
+**4 .** **`template`** 模板可以有多个根元素
+
+**5 .** 源码用 **`typescript`** 重写, 有更好的 **类型推导** (类型检测更为严格, 更稳定)
+
+<font color="red">**Composition API**</font>
+
+**`setup`** 函数
+
+**`setup` 中不能使用 `this`**, `this` 指向 `undefined`
+
+```
+reactive 
+ref 
+toRef 
+toRefs 
+computed 
+```
+
+
 
 # Vue2和Vue3有哪些区别
 
@@ -163,3 +200,5 @@ Vue 中数据双向绑定是一个指令`v-model`，可以绑定一个响应式�
 # 双向数据绑定原理
 
  
+
+# 生命周期
