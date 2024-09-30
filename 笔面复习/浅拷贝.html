@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+let obj1 = {
+  name: '李三',
+  age: 8,
+  friends: ['张三','王五','哈哈']
+}
+let newobj = shallowCopy(obj1)
+
+function shallowCopy(srcObj) {
+  let newObjtmp = {}
+  for(let prop in srcObj) {
+    console.log(prop); // name age friends
+    if(srcObj.hasOwnProperty(prop)) {
+      newObjtmp[prop] = srcObj[prop]
+    }
+  }
+  return newObjtmp
+}
+
+console.log('newObj = ', newobj);
+//浅拷贝只能复制一级属性，且如果一级属性是引用类型，只复制地址
+
+obj1.friends[0] = '更改'
+console.log(newobj.friends); // ['更改', '王五', '哈哈']
+
+
+</script>

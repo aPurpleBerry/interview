@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+var obj = {   // 原数据，包含字符串、对象、函数、数组等不同的类型
+  name: "test",
+  main: {
+    a: 1,
+    b: 2
+  },
+  fn: function(){
+    console.log('This is a function');
+  },
+  friends: [1, 2, 3, [22, 33]]
+}
+
+function deepCopy(obj) {
+  let newObj = null;
+  
+  // typeof(obj)=object 有三种情况 null object array
+  if(typeof(obj) == 'object' && obj != null) {
+    newObj = obj instanceof Array? []:{}
+    for(let i in obj) {
+      newObj[i] = deepCopy(obj[i]) //递归调用
+    }
+  } else {
+    //函数的情况
+    newObj = obj
+  }
+
+  return newObj
+}
+
+var obj2 = deepCopy(obj)
+obj2.name = '修改成功'
+obj2.main.a = 100
+console.log(obj)
+console.log(obj2)
+</script>
