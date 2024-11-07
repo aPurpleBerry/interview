@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+let arr = [10, 5, 3, 7]
+
+/*
+数组变量吗.reduce((sum,value) => {
+  // 向sum变量上累加值
+  // 一定要return值 给下一次循环sum初始值
+},0)
+*/
+
+let res = arr.reduce((sum, value) =>{
+  // console.log(sum,value);
+  sum += value
+  return sum
+},0)
+
+console.log(res);
+
+/*用在数组扁平化中*/
+const newArrFunc = (arr)=>{
+  return arr.reduce((pre,cur)=>{
+      console.log(pre, cur);
+    
+      return pre.concat(Array.isArray(cur) ? newArrFunc(cur) : cur)
+  },[])
+}
+console.log(newArrFunc([1,[2,[3,[4,5]]],9]),"reduce方法")
+
+
+// 从数组 [1,2,3,4,5,6] 中找出值为 2 的元素
+console.log('从数组 [1,2,3,4,5,6] 中找出值为 2 的元素');
+
+let arr1 = [1,2,3,4,5,6]
+let res1 = arr1.find((ele,index)=>{
+  return ele === 2
+})
+console.log(res1);
+
+
+let res2 = [1,2,3,4,5,6].filter((ele) => ele === 2)
+console.log(res2);
+
+</script>
