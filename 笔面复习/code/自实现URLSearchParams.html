@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+
+// class URLSearchParams {
+//   constructor(init = "") { // 默认参数值
+//     this.params = new Map();
+
+//     if(typeof init == 'string') {
+
+//     } else if(typeof init == 'object' && init != null) {
+
+//     }
+//   }
+// }
+
+class URLSearchParams {
+  constructor(init = "") {
+    this.params = new Map(); // 用 Map 存储参数，每个键对应一个数组（支持重复值）
+
+    if (typeof init === "string") {
+      // 解析查询字符串
+      init
+        .replace(/^\?/, "") // 移除开头的问号
+        .split("&") // 按 `&` 分隔参数
+        .forEach((pair) => {
+          if (pair) {
+            const [key, value = ""] = pair.split("=");
+            this.append(decodeURIComponent(key), decodeURIComponent(value));
+          }
+        });
+    } else if (typeof init === "object" && init !== null) {
+      // 遍历对象，初始化参数
+      for (const key in init) {
+        this.append(key, init[key]);
+      }
+    }
+  }
+
+  // 添加参数（允许重复键）
+  append(key, value) {
+    if (!this.params.has(key)) {
+      this.params.set(key, []); // 如果不存在，初始化为空数组
+    }
+    this.params.get(key).push(String(value));
+  }
+
+  // 设置参数（覆盖旧值）
+  set(key, value) {
+    this.params.set(key, [String(value)]);
+  }
+
+  // 获取指定键的第一个值
+  get(key) {
+    if (this.params.has(key)) {
+      return this.params.get(key)[0];
+    }
+    return null;
+  }
+
+  // 获取指定键的所有值（返回数组）
+  getAll(key) {
+    return this.params.has(key) ? [...this.params.get(key)] : [];
+  }
+
+  // 转换为查询字符串格式
+  toString() {
+    const query = [];
+    for (const [key, values] of this.params) {
+      values.forEach((value) => {
+        query.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+      });
+    }
+    return query.join("&");
+  }
+
+  // 支持 for...of 遍历
+  *[Symbol.iterator]() {
+    for (const [key, values] of this.params) {
+      for (const value of values) {
+        yield [key, value];
+      }
+    }
+  }
+}
+
+let hh = new URLSearchParams("?key=value")
+console.log(hh.toString());
+
+
+
+</script>

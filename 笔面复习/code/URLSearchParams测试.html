@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+// 传入查询字符串
+const params = new URLSearchParams("?key1=value1&key2=value2");
+console.log(params.toString()); // 输出：key1=value1&key2=value2
+
+// 传入对象
+const params2 = new URLSearchParams({ key1: "value1", key2: "value2" });
+console.log(params2.toString()); // 输出：key1=value1&key2=value2
+
+// 传入数组
+const params3 = new URLSearchParams([
+  ["key1", "value1"],
+  ["key2", "value2"],
+]);
+console.log(params3.toString()); // 输出：key1=value1&key2=value2
+
+
+// append
+const test1 = new URLSearchParams();
+test1.append("key", "value")
+test1.append("key", "value2")
+console.log(test1.toString());
+console.log(test1);
+
+// SET
+const test2 = new URLSearchParams();
+test2.set("key", "value")
+test2.set("key", "value22")
+console.log(test2.toString());
+
+// get 
+const test_get = new URLSearchParams("?key=value1&key=value2");
+console.log(test_get.get("key")); // 输出：value1
+console.log(test_get.get("nonexistent")); // 输出：null
+console.log(test_get.getAll("key")); // 输出：['value1', 'value2']
+
+
+</script>
